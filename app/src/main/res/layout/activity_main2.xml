@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/azulin_300"
+    android:fillViewport="true"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_marginTop="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trabajo en proceso . . ."
+            android:textSize="25dp"
+            android:layout_marginStart="60dp"
+            android:textColor="@color/white"
+            />
+
+        <ImageView
+            android:id="@+id/imagen1"
+            android:layout_width="800px"
+            android:layout_height="800px"
+            android:layout_margin="50dp"
+            android:src="@drawable/estres"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Favor de volver al menu inicial"
+            android:textSize="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/white"
+            />
+
+        <Button
+            android:id="@+id/btnRegresar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginTop="30dp"
+            android:text="Regresar"
+            android:backgroundTint="@color/rojito"
+            />
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
