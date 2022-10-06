@@ -8,6 +8,8 @@ class GameModel : ViewModel() {
     private val questions = mutableListOf<Question>()
     private var currentQuestionIndex = 0
 
+    var shuffAnswers : List<String>
+
     init {
 
         questions.add(Question("¿Cual ha sido la pelicula más taquillera de la historia?",false,"Avengers:Endgame","Titanic","Avatar","Spiderman:No Way Home"))
@@ -36,8 +38,18 @@ class GameModel : ViewModel() {
         questions.add(Question("¿De que país es originario el Tetris?",false,"Rusia","Japón","Estados Unidos","Alemania"))
         questions.add(Question("¿Desde que FIFA salio el jugador Ronaldihno?",false,"2006","2000","2010","1998"))
 
+        var answers = mutableListOf<String>( currentQuestionAnswer,
+            currentQuestionAnswerBad2, currentQuestionAnswerBad3,
+            currentQuestionAnswerBad3)
+
+        shuffAnswers = answers.shuffled()
 
     }
+
+
+
+    val ShuffResp : List<String>
+        get() = shuffAnswers
 
 
     // poner en aleatorio las preguntas

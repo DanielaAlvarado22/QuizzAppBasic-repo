@@ -42,19 +42,17 @@ class MainActivity3 : AppCompatActivity() {
         txtIndex.text = gameModel.Totalindex
         txtsizeIndex.text = gameModel.sizeIndex
 
-        btnResp1.text = gameModel.currentQuestionAnswer
-        btnResp2.text = gameModel.currentQuestionAnswerBad1
-        btnResp3.text = gameModel.currentQuestionAnswerBad2
-        btnResp4.text = gameModel.currentQuestionAnswerBad3
+        gameModel.currentQuestionAnswer
+        gameModel.currentQuestionAnswerBad1
+        gameModel.currentQuestionAnswerBad2
+        gameModel.currentQuestionAnswerBad3
 //endregion
 
-        val listAnsw = mutableListOf<Button>(btnResp1, btnResp2, btnResp3, btnResp4)
-        val shuffAnsw = listAnsw.shuffled()
 
-        btnResp1 = shuffAnsw[0]
-        btnResp2 = shuffAnsw[1]
-        btnResp3 = shuffAnsw[2]
-        btnResp4 = shuffAnsw[3]
+        btnResp1.text = gameModel.ShuffResp[0]
+        btnResp2.text = gameModel.ShuffResp[1]
+        btnResp3.text = gameModel.ShuffResp[2]
+        btnResp4.text = gameModel.ShuffResp[3]
 
 //region botonesrespuesta
         btnResp1.setOnClickListener { v ->
@@ -143,18 +141,10 @@ class MainActivity3 : AppCompatActivity() {
             gameModel.prevQuestion()
             txtQuestion.text = gameModel.currentQuestionText
 
-            btnResp1.text = gameModel.currentQuestionAnswer
-            btnResp2.text = gameModel.currentQuestionAnswerBad1
-            btnResp3.text = gameModel.currentQuestionAnswerBad2
-            btnResp4.text = gameModel.currentQuestionAnswerBad3
-
-            val listAnsw = mutableListOf<Button>(btnResp1, btnResp2, btnResp3, btnResp4)
-            val shuffAnsw = listAnsw.shuffled()
-
-            btnResp1 = shuffAnsw[0]
-            btnResp2 = shuffAnsw[1]
-            btnResp3 = shuffAnsw[2]
-            btnResp4 = shuffAnsw[3]
+            btnResp1.text = gameModel.ShuffResp[0]
+            btnResp2.text = gameModel.ShuffResp[1]
+            btnResp3.text = gameModel.ShuffResp[2]
+            btnResp4.text = gameModel.ShuffResp[3]
 
             if(!gameModel.isAnswered()){
                 btnResp1.setTextColor(Color.WHITE)
@@ -180,20 +170,14 @@ class MainActivity3 : AppCompatActivity() {
         btnNext.setOnClickListener { v ->
             gameModel.nextQuestion()
             txtQuestion.text = gameModel.currentQuestionText
-            btnResp1.text = gameModel.currentQuestionAnswer
-            btnResp2.text = gameModel.currentQuestionAnswerBad1
-            btnResp3.text = gameModel.currentQuestionAnswerBad2
-            btnResp4.text = gameModel.currentQuestionAnswerBad3
 
-            val listAnsw = mutableListOf<Button>(btnResp1, btnResp2, btnResp3, btnResp4)
-            val shuffAnsw = listAnsw.shuffled()
-
-            btnResp1 = shuffAnsw[0]
-            btnResp2 = shuffAnsw[1]
-            btnResp3 = shuffAnsw[2]
-            btnResp4 = shuffAnsw[3]
 
             if(!gameModel.isAnswered()){
+                btnResp1.text = gameModel.ShuffResp[0]
+                btnResp2.text = gameModel.ShuffResp[1]
+                btnResp3.text = gameModel.ShuffResp[2]
+                btnResp4.text = gameModel.ShuffResp[3]
+
                 btnResp1.setTextColor(Color.WHITE)
                 btnResp2.setTextColor(Color.WHITE)
                 btnResp3.setTextColor(Color.WHITE)
