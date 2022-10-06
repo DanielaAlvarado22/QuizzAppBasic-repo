@@ -42,17 +42,14 @@ class MainActivity3 : AppCompatActivity() {
         txtIndex.text = gameModel.Totalindex
         txtsizeIndex.text = gameModel.sizeIndex
 
-        gameModel.currentQuestionAnswer
-        gameModel.currentQuestionAnswerBad1
-        gameModel.currentQuestionAnswerBad2
-        gameModel.currentQuestionAnswerBad3
+
 //endregion
 
 
-        btnResp1.text = gameModel.ShuffResp[0]
-        btnResp2.text = gameModel.ShuffResp[1]
-        btnResp3.text = gameModel.ShuffResp[2]
-        btnResp4.text = gameModel.ShuffResp[3]
+        btnResp1.text = gameModel.currentQuestionAnswer
+        btnResp2.text = gameModel.currentQuestionAnswerBad1
+        btnResp3.text = gameModel.currentQuestionAnswerBad2
+        btnResp4.text = gameModel.currentQuestionAnswerBad3
 
 //region botonesrespuesta
         btnResp1.setOnClickListener { v ->
@@ -141,10 +138,10 @@ class MainActivity3 : AppCompatActivity() {
             gameModel.prevQuestion()
             txtQuestion.text = gameModel.currentQuestionText
 
-            btnResp1.text = gameModel.ShuffResp[0]
-            btnResp2.text = gameModel.ShuffResp[1]
-            btnResp3.text = gameModel.ShuffResp[2]
-            btnResp4.text = gameModel.ShuffResp[3]
+            btnResp1.text = gameModel.currentQuestionAnswer
+            btnResp2.text = gameModel.currentQuestionAnswerBad1
+            btnResp3.text = gameModel.currentQuestionAnswerBad2
+            btnResp4.text = gameModel.currentQuestionAnswerBad3
 
             if(!gameModel.isAnswered()){
                 btnResp1.setTextColor(Color.WHITE)
@@ -173,10 +170,10 @@ class MainActivity3 : AppCompatActivity() {
 
 
             if(!gameModel.isAnswered()){
-                btnResp1.text = gameModel.ShuffResp[0]
-                btnResp2.text = gameModel.ShuffResp[1]
-                btnResp3.text = gameModel.ShuffResp[2]
-                btnResp4.text = gameModel.ShuffResp[3]
+                btnResp1.text = gameModel.currentQuestionAnswer
+                btnResp2.text = gameModel.currentQuestionAnswerBad1
+                btnResp3.text = gameModel.currentQuestionAnswerBad2
+                btnResp4.text = gameModel.currentQuestionAnswerBad3
 
                 btnResp1.setTextColor(Color.WHITE)
                 btnResp2.setTextColor(Color.WHITE)

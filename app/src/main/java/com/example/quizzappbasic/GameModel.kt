@@ -8,7 +8,7 @@ class GameModel : ViewModel() {
     private val questions = mutableListOf<Question>()
     private var currentQuestionIndex = 0
 
-    var shuffAnswers : List<String>
+
 
     init {
 
@@ -38,24 +38,24 @@ class GameModel : ViewModel() {
         questions.add(Question("¿De que país es originario el Tetris?",false,"Rusia","Japón","Estados Unidos","Alemania"))
         questions.add(Question("¿Desde que FIFA salio el jugador Ronaldihno?",false,"2006","2000","2010","1998"))
 
-        var answers = mutableListOf<String>( currentQuestionAnswer,
-            currentQuestionAnswerBad2, currentQuestionAnswerBad3,
-            currentQuestionAnswerBad3)
-
-        shuffAnswers = answers.shuffled()
-
     }
 
 
+//
+//    var shuffAnswers = answers.shuffled()
 
-    val ShuffResp : List<String>
-        get() = shuffAnswers
+
+//    val ShuffResp : List<String>
+//        get() = shuffAnswers
 
 
     // poner en aleatorio las preguntas
 
     val shuffQuestions = questions.shuffled()
 
+    var answers = mutableListOf<String>(shuffQuestions[currentQuestionIndex].correctAnswer,shuffQuestions[currentQuestionIndex].incorrect1,shuffQuestions[currentQuestionIndex].incorrect2,shuffQuestions[currentQuestionIndex].incorrect3)
+
+    var shuffAnswers = answers.shuffled()
 
     val currentIndex: Int
         get() = currentQuestionIndex
@@ -67,16 +67,16 @@ class GameModel : ViewModel() {
     //obtener respuestas
 
     val currentQuestionAnswer : String
-        get() = shuffQuestions[currentQuestionIndex].correctAnswer
+        get() = shuffAnswers[0]
 
     val currentQuestionAnswerBad1 : String
-        get() = shuffQuestions[currentQuestionIndex].incorrect1
+        get() = shuffAnswers[1]
 
     val currentQuestionAnswerBad2 : String
-        get() = shuffQuestions[currentQuestionIndex].incorrect2
+        get() = shuffAnswers[2]
 
     val currentQuestionAnswerBad3 : String
-        get() = shuffQuestions[currentQuestionIndex].incorrect3
+        get() = shuffAnswers[3]
 
     //obtener current index
 
@@ -113,7 +113,7 @@ class GameModel : ViewModel() {
     //checar si es correcta la respuesta
 
     fun compare(string: String): Boolean{
-        return string == currentQuestionAnswer
+        return string == shuffQuestions[currentQuestionIndex].correctAnswer
     }
 
 }
