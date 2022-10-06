@@ -41,42 +41,10 @@ class GameModel : ViewModel() {
     }
 
 
-//
-//    var shuffAnswers = answers.shuffled()
-
-
-//    val ShuffResp : List<String>
-//        get() = shuffAnswers
-
 
     // poner en aleatorio las preguntas
 
     val shuffQuestions = questions.shuffled()
-
-    var answers = mutableListOf<String>(shuffQuestions[currentQuestionIndex].correctAnswer,shuffQuestions[currentQuestionIndex].incorrect1,shuffQuestions[currentQuestionIndex].incorrect2,shuffQuestions[currentQuestionIndex].incorrect3)
-
-    var shuffAnswers = answers.shuffled()
-
-    val currentIndex: Int
-        get() = currentQuestionIndex
-    //obtener la pregunta
-
-    val currentQuestionText: String
-        get() = shuffQuestions[currentQuestionIndex].text
-
-    //obtener respuestas
-
-    val currentQuestionAnswer : String
-        get() = shuffAnswers[0]
-
-    val currentQuestionAnswerBad1 : String
-        get() = shuffAnswers[1]
-
-    val currentQuestionAnswerBad2 : String
-        get() = shuffAnswers[2]
-
-    val currentQuestionAnswerBad3 : String
-        get() = shuffAnswers[3]
 
     //obtener current index
 
@@ -85,13 +53,52 @@ class GameModel : ViewModel() {
 
     //obtener el size de la lista
     val sizeIndex : String
-        get() = "/"+ (shuffQuestions.size -15).toString()
+        get() = "/"+ (shuffQuestions.size - 15).toString()
+
+
+    val currentIndex: Int
+        get() = currentQuestionIndex
+
+    //obtener la pregunta
+
+    val currentQuestionText: String
+        get() = shuffQuestions[currentQuestionIndex].text
+
+    var answers = mutableListOf<String>(shuffQuestions[currentIndex].correctAnswer,shuffQuestions[currentIndex].incorrect1,shuffQuestions[currentIndex].incorrect2,shuffQuestions[currentIndex].incorrect3)
+
+    val respuestas : List <String>
+        get() = answers
+
+    var shuffAnswers = respuestas.shuffled()
+
+    val extraerShuffAnsw : List <String>
+        get() = shuffAnswers
+
+
+
+    //obtener respuestas
+
+    val currentQuestionAnswer : String
+        get() = extraerShuffAnsw[0]
+
+    val currentQuestionAnswerBad1 : String
+        get() = extraerShuffAnsw[1]
+
+    val currentQuestionAnswerBad2 : String
+        get() = extraerShuffAnsw[2]
+
+    val currentQuestionAnswerBad3 : String
+        get() = extraerShuffAnsw[3]
+
+
 
     //Botones Next y Prev
 
     fun nextQuestion() {
         currentQuestionIndex = (currentQuestionIndex + 1) % 10 //es modulo 10 para que solo muestre 10
 
+        var answers = mutableListOf<String>(shuffQuestions[currentIndex].correctAnswer,shuffQuestions[currentIndex].incorrect1,shuffQuestions[currentIndex].incorrect2,shuffQuestions[currentIndex].incorrect3)
+        var shuffAnswers = answers.shuffled()
     }
 
     fun prevQuestion(){

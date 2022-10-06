@@ -168,12 +168,13 @@ class MainActivity3 : AppCompatActivity() {
             gameModel.nextQuestion()
             txtQuestion.text = gameModel.currentQuestionText
 
+            btnResp1.text = gameModel.currentQuestionAnswer
+            btnResp2.text = gameModel.currentQuestionAnswerBad1
+            btnResp3.text = gameModel.currentQuestionAnswerBad2
+            btnResp4.text = gameModel.currentQuestionAnswerBad3
 
             if(!gameModel.isAnswered()){
-                btnResp1.text = gameModel.currentQuestionAnswer
-                btnResp2.text = gameModel.currentQuestionAnswerBad1
-                btnResp3.text = gameModel.currentQuestionAnswerBad2
-                btnResp4.text = gameModel.currentQuestionAnswerBad3
+
 
                 btnResp1.setTextColor(Color.WHITE)
                 btnResp2.setTextColor(Color.WHITE)
