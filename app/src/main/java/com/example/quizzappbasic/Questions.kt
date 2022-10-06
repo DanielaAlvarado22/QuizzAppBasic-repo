@@ -1,3 +1,3 @@
 package com.example.quizzappbasic
 
-data class Question(val text: String, var answered:Boolean, val correctAnswer: String, val incorrect1:String, val incorrect2:String, val incorrect3:String )
+data class Question(val text: String, var answered:Boolean, var answeredCorrectly: Int, var correctAnswer: String, var incorrect1:String, var incorrect2:String, var incorrect3:String )

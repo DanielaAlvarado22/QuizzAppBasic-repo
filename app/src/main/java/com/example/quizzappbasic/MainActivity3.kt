@@ -45,153 +45,115 @@ class MainActivity3 : AppCompatActivity() {
 
 //endregion
 
+        var respuestas = listOf<String>(gameModel.currentQuestionAnswer, gameModel.currentQuestionAnswerBad1, gameModel.currentQuestionAnswerBad2, gameModel.currentQuestionAnswerBad3 )
+        var respuestasShuffled = respuestas.shuffled()
+        btnResp1.text = respuestasShuffled[0]
+        btnResp2.text = respuestasShuffled[1]
+        btnResp3.text = respuestasShuffled[2]
+        btnResp4.text = respuestasShuffled[3]
 
-        btnResp1.text = gameModel.currentQuestionAnswer
-        btnResp2.text = gameModel.currentQuestionAnswerBad1
-        btnResp3.text = gameModel.currentQuestionAnswerBad2
-        btnResp4.text = gameModel.currentQuestionAnswerBad3
+//region btn next y prev
+        btnNext.setOnClickListener { v ->
+            gameModel.nextQuestion()
+            txtQuestion.text = gameModel.currentQuestionText
 
-//region botonesrespuesta
-        btnResp1.setOnClickListener { v ->
-            if(!gameModel.isAnswered()){
-                if(gameModel.compare(btnResp1.text.toString())){
-                    Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show()
-                    btnResp1.setTextColor(Color.GREEN)
-                    btnResp2.isEnabled = false
-                    btnResp3.isEnabled = false
-                    btnResp4.isEnabled = false
-                }else{
-                    Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show()
-                    btnResp1.setTextColor(Color.RED)
-                    btnResp2.isEnabled = false
-                    btnResp3.isEnabled = false
-                    btnResp4.isEnabled = false
-                }
-                gameModel.shuffQuestions[gameModel.currentIndex].answered = true
-            }else{
-                Toast.makeText(this, "Ya la contestaste", Toast.LENGTH_SHORT).show()
-                btnResp1.isEnabled = false
-                btnResp2.isEnabled = false
-                btnResp3.isEnabled = false
-                btnResp4.isEnabled = false
-            }
-        }
-        btnResp2.setOnClickListener { v ->
-            if(!gameModel.isAnswered()){
-                if(gameModel.compare(btnResp2.text.toString())){
-                    Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show()
-                    btnResp2.setTextColor(Color.GREEN)
-                    btnResp1.isEnabled = false
-                    btnResp3.isEnabled = false
-                    btnResp4.isEnabled = false
-                }else{
-                    Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show()
-                    btnResp2.setTextColor(Color.RED)
-                    btnResp1.isEnabled = false
-                    btnResp3.isEnabled = false
-                    btnResp4.isEnabled = false
-                }
-                gameModel.shuffQuestions[gameModel.currentIndex].answered = true
-            }
-        }
-        btnResp3.setOnClickListener { v ->
-            if(!gameModel.isAnswered()){
-                if(gameModel.compare(btnResp3.text.toString())){
-                    Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show()
-                    btnResp3.setTextColor(Color.GREEN)
-                    btnResp1.isEnabled = false
-                    btnResp2.isEnabled = false
-                    btnResp4.isEnabled = false
-                }else{
-                    Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show()
-                    btnResp3.setTextColor(Color.RED)
-                    btnResp1.isEnabled = false
-                    btnResp2.isEnabled = false
-                    btnResp4.isEnabled = false
-                }
-                gameModel.shuffQuestions[gameModel.currentIndex].answered = true
-            }
-        }
-        btnResp4.setOnClickListener { v ->
-            if(!gameModel.isAnswered()){
-                if(gameModel.compare(btnResp4.text.toString())){
-                    Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show()
-                    btnResp4.setTextColor(Color.GREEN)
-                    btnResp1.isEnabled = false
-                    btnResp2.isEnabled = false
-                    btnResp3.isEnabled = false
-                } else{
-                    Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show()
-                    btnResp4.setTextColor(Color.RED)
-                    btnResp1.isEnabled = false
-                    btnResp2.isEnabled = false
-                    btnResp3.isEnabled = false
-                }
-                gameModel.shuffQuestions[gameModel.currentIndex].answered = true
-            }
-        }
+            randomizeAnswers(gameModel)
 
-
-//endregion
+            txtIndex.text = gameModel.Totalindex
+        }
 
         btnPrev.setOnClickListener { v ->
             gameModel.prevQuestion()
             txtQuestion.text = gameModel.currentQuestionText
 
-            btnResp1.text = gameModel.currentQuestionAnswer
-            btnResp2.text = gameModel.currentQuestionAnswerBad1
-            btnResp3.text = gameModel.currentQuestionAnswerBad2
-            btnResp4.text = gameModel.currentQuestionAnswerBad3
-
-            if(!gameModel.isAnswered()){
-                btnResp1.setTextColor(Color.WHITE)
-                btnResp2.setTextColor(Color.WHITE)
-                btnResp3.setTextColor(Color.WHITE)
-                btnResp4.setTextColor(Color.WHITE)
-
-                btnResp1.isEnabled = true
-                btnResp2.isEnabled = true
-                btnResp3.isEnabled = true
-                btnResp4.isEnabled = true
-            }else{
-                btnResp1.isEnabled = false
-                btnResp2.isEnabled = false
-                btnResp3.isEnabled = false
-                btnResp4.isEnabled = false
-            }
+            randomizeAnswers(gameModel)
 
             txtIndex.text = gameModel.Totalindex
-
         }
 
-        btnNext.setOnClickListener { v ->
-            gameModel.nextQuestion()
-            txtQuestion.text = gameModel.currentQuestionText
 
-            btnResp1.text = gameModel.currentQuestionAnswer
-            btnResp2.text = gameModel.currentQuestionAnswerBad1
-            btnResp3.text = gameModel.currentQuestionAnswerBad2
-            btnResp4.text = gameModel.currentQuestionAnswerBad3
+        //endregion
 
-            if(!gameModel.isAnswered()){
+//region botonesrespuesta
+        btnResp1.setOnClickListener { v ->
+            validateAnswers(gameModel, btnResp1)
+        }
+        btnResp2.setOnClickListener { v ->
+            validateAnswers(gameModel, btnResp2)
+        }
+        btnResp3.setOnClickListener { v ->
+            validateAnswers(gameModel, btnResp3)
+        }
+        btnResp4.setOnClickListener { v ->
+            validateAnswers(gameModel, btnResp4)
+        }
 
 
-                btnResp1.setTextColor(Color.WHITE)
-                btnResp2.setTextColor(Color.WHITE)
-                btnResp3.setTextColor(Color.WHITE)
-                btnResp4.setTextColor(Color.WHITE)
+//endregion
 
-                btnResp1.isEnabled = true
-                btnResp2.isEnabled = true
-                btnResp3.isEnabled = true
-                btnResp4.isEnabled = true
+
+    }
+
+    private fun validateAnswers(gameModel: GameModel, currBtn: Button, ) {
+        if(!gameModel.answered){
+            if(gameModel.compare(btnResp2.text.toString())){
+                Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show()
+                currBtn.setTextColor(Color.GREEN)
+                gameModel.addPoints()
+                gameModel.shuffQuestions[gameModel.currentIndex].answered = true
+                gameModel.shuffQuestions[gameModel.currentIndex].answeredCorrectly = 1
             }else{
-                btnResp1.isEnabled = false
-                btnResp2.isEnabled = false
-                btnResp3.isEnabled = false
-                btnResp4.isEnabled = false
+                Toast.makeText(this, "Incorrecto", Toast.LENGTH_SHORT).show()
+                currBtn.setTextColor(Color.RED)
+                gameModel.popPoints()
+                gameModel.shuffQuestions[gameModel.currentIndex].answered = true
+                gameModel.shuffQuestions[gameModel.currentIndex].answeredCorrectly = 2
             }
-            txtIndex.text = gameModel.Totalindex
+
+        }else{
+
+            Toast.makeText(this, "Ya la contestaste", Toast.LENGTH_SHORT).show()
+            btnResp1.isEnabled = false
+            btnResp2.isEnabled = false
+            btnResp3.isEnabled = false
+            btnResp4.isEnabled = false
+        }
+    }
+
+    private fun randomizeAnswers(gameModel: GameModel){
+        if(!gameModel.answered){
+            var respuestas = listOf<String>(gameModel.currentQuestionAnswer, gameModel.currentQuestionAnswerBad1, gameModel.currentQuestionAnswerBad2, gameModel.currentQuestionAnswerBad3 )
+            var respuestasShuffled = respuestas.shuffled()
+            btnResp1.text = respuestasShuffled[0]
+            btnResp2.text = respuestasShuffled[1]
+            btnResp3.text = respuestasShuffled[2]
+            btnResp4.text = respuestasShuffled[3]
+
+            btnResp1.isEnabled = true
+            btnResp2.isEnabled = true
+            btnResp3.isEnabled = true
+            btnResp4.isEnabled = true
+            btnResp1.setTextColor(Color.WHITE)
+            btnResp2.setTextColor(Color.WHITE)
+            btnResp3.setTextColor(Color.WHITE)
+            btnResp4.setTextColor(Color.WHITE)
+
+        }else{
+            if(gameModel.shuffQuestions[gameModel.currentIndex].answeredCorrectly == 1){
+                Toast.makeText(this, "Ya la contestaste CORRECTAMENTE", Toast.LENGTH_SHORT).show()
+            }
+            if(gameModel.shuffQuestions[gameModel.currentIndex].answeredCorrectly == 2){
+                Toast.makeText(this, "Ya la contestaste MAL!!!!", Toast.LENGTH_SHORT).show()
+            }
+
+            btnResp1.isEnabled = false
+            btnResp2.isEnabled = false
+            btnResp3.isEnabled = false
+            btnResp4.isEnabled = false
+            btnResp1.setTextColor(Color.TRANSPARENT)
+            btnResp2.setTextColor(Color.TRANSPARENT)
+            btnResp3.setTextColor(Color.TRANSPARENT)
+            btnResp4.setTextColor(Color.TRANSPARENT)
         }
     }
 }
