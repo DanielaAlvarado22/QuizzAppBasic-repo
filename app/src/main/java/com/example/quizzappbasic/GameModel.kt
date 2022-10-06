@@ -99,6 +99,8 @@ class GameModel : ViewModel() {
         return string == shuffQuestions[currentQuestionIndex].correctAnswer
     }
 
+    //puntaje
+
     fun addPoints() {
         puntaje++
     }

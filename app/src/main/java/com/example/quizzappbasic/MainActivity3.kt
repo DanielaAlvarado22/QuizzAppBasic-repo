@@ -1,12 +1,12 @@
 package com.example.quizzappbasic
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.graphics.Color
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity3 : AppCompatActivity() {
 
@@ -19,12 +19,16 @@ class MainActivity3 : AppCompatActivity() {
     private lateinit var btnResp4 :Button
     private lateinit var txtIndex : TextView
     private lateinit var txtsizeIndex : TextView
+    private lateinit var txtdif: TextView
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
+
+       val bundle = intent.extras
+        val dato = bundle?.getString("facil")
 
         val gameModel: GameModel by viewModels()
 //region asignaciones
@@ -37,12 +41,12 @@ class MainActivity3 : AppCompatActivity() {
         btnResp4 = findViewById(R.id.btnresp4)
         txtIndex = findViewById(R.id.txtIndex)
         txtsizeIndex = findViewById(R.id.txtsizeIndex)
-
+        txtdif = findViewById(R.id.txtdif)
         txtQuestion.text = gameModel.currentQuestionText
         txtIndex.text = gameModel.Totalindex
         txtsizeIndex.text = gameModel.sizeIndex
 
-
+        txtdif.text = dato
 //endregion
 
         var respuestas = listOf<String>(gameModel.currentQuestionAnswer, gameModel.currentQuestionAnswerBad1, gameModel.currentQuestionAnswerBad2, gameModel.currentQuestionAnswerBad3 )
@@ -94,9 +98,9 @@ class MainActivity3 : AppCompatActivity() {
 
     }
 
-    private fun validateAnswers(gameModel: GameModel, currBtn: Button, ) {
+    private fun validateAnswers(gameModel: GameModel, currBtn: Button) {
         if(!gameModel.answered){
-            if(gameModel.compare(btnResp2.text.toString())){
+            if(gameModel.compare(currBtn.text.toString())){
                 Toast.makeText(this, "Correcto", Toast.LENGTH_SHORT).show()
                 currBtn.setTextColor(Color.GREEN)
                 gameModel.addPoints()
@@ -156,4 +160,8 @@ class MainActivity3 : AppCompatActivity() {
             btnResp4.setTextColor(Color.TRANSPARENT)
         }
     }
+
+
+
+
 }

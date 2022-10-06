@@ -10,6 +10,8 @@ import android.widget.*
 class MainActivity : AppCompatActivity() {
 
     val dificultad = arrayOf("Facil","Normal","Dificil")
+    lateinit var facil : String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,29 +26,32 @@ class MainActivity : AppCompatActivity() {
         val btnJugar = findViewById<Button>(R.id.btnJugar)
         btnJugar.setOnClickListener {
             val lanzar = Intent(this,MainActivity3::class.java)
+            lanzar.putExtra("facil",facil)
             startActivity(lanzar)
+
+
         }
 
         val spinner = findViewById<Spinner>(R.id.spinner1)
         val arrayAdapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,dificultad)
         spinner.adapter = arrayAdapter
 
+        //sacar posicion
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                p0: AdapterView<*>?,
+                p1: View?,
+                position: Int,
+                p3: Long) {
 
+               facil = spinner.getItemAtPosition(0).toString()
+            }
 
-//       --- placeholder del spinner---
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(
-//                p0: AdapterView<*>?,
-//                p1: View?,
-//                position: Int,
-//                p3: Long) {
-//
-//            }
-//
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
     }
 }
