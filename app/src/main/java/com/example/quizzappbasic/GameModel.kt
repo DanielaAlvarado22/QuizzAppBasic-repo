@@ -8,7 +8,6 @@ class GameModel : ViewModel() {
     private val questions = mutableListOf<Question>()
     private var currentQuestionIndex = 0
 
-
     init {
 
         questions.add(Question("¿Cual ha sido la pelicula más taquillera de la historia?",false,"Avengers:Endgame","Titanic","Avatar","Spiderman:No Way Home"))
@@ -36,6 +35,8 @@ class GameModel : ViewModel() {
         questions.add(Question("¿Cual es el videojuego más vendido en la historia?",false,"Wii Sports","Minecraft","Super Mario Bros","Mario Kart"))
         questions.add(Question("¿De que país es originario el Tetris?",false,"Rusia","Japón","Estados Unidos","Alemania"))
         questions.add(Question("¿Desde que FIFA salio el jugador Ronaldihno?",false,"2006","2000","2010","1998"))
+
+
     }
 
 
@@ -43,6 +44,9 @@ class GameModel : ViewModel() {
 
     val shuffQuestions = questions.shuffled()
 
+
+    val currentIndex: Int
+        get() = currentQuestionIndex
     //obtener la pregunta
 
     val currentQuestionText: String
@@ -69,12 +73,12 @@ class GameModel : ViewModel() {
 
     //obtener el size de la lista
     val sizeIndex : String
-        get() = "/"+ questions.size.toString()
+        get() = "/"+ (shuffQuestions.size -15).toString()
 
     //Botones Next y Prev
 
     fun nextQuestion() {
-        currentQuestionIndex = (currentQuestionIndex + 1) % questions.size
+        currentQuestionIndex = (currentQuestionIndex + 1) % 10 //es modulo 10 para que solo muestre 10
 
     }
 
