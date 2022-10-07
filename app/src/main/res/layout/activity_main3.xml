@@ -51,13 +51,15 @@
 
 
     <TextView
-        android:id="@+id/txtdif"
-        android:layout_width="match_parent"
+        android:id="@+id/txtTema"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:gravity = "center"
+        android:layout_marginStart="140dp"
+        android:layout_marginEnd="110dp"
         android:layout_marginTop="10dp"
         android:textSize="20dp"
-        tools:text="Tema: " />
+        tools:text="Animales " />
 
 
 
@@ -66,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Pregunta"
-        android:paddingTop="30dp"
+        android:paddingTop="5dp"
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="25dp"
@@ -116,6 +118,17 @@
         tools:text="Respuesta 4"
         />
 
+    <TextView
+        android:id="@+id/txtContestada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Aqui se muestra la validacion"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -127,7 +140,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/azulin_400"
             android:text="PREV" />
 
@@ -136,7 +149,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="50dp"
             android:backgroundTint="@color/azulin_400"
             android:text="NEXT" />
@@ -152,6 +165,18 @@
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:text="HINT" />
+
+    <TextView
+        android:id="@+id/txtHints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Hints restantes:"
+        android:paddingTop="5dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+
+        />
 
 
 
