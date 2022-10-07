@@ -9,49 +9,47 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
-    val dificultad = arrayOf("Facil","Normal","Dificil")
-    lateinit var facil : String
-
+    lateinit var dificultad : MutableList<String>
+    lateinit var spinner : Spinner
+    lateinit var dif: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        spinner = findViewById<Spinner>(R.id.spinner1)
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.Dificultad,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            spinner.adapter = adapter
+        }
+
+
         val btnOpciones = findViewById<Button>(R.id.btnOpciones)
         btnOpciones.setOnClickListener {
-            val lanzar = Intent(this,MainActivity2::class.java)
+            val lanzar = Intent(this, MainActivity2::class.java)
             startActivity(lanzar)
         }
 
         val btnJugar = findViewById<Button>(R.id.btnJugar)
         btnJugar.setOnClickListener {
-            val lanzar = Intent(this,MainActivity3::class.java)
-            lanzar.putExtra("facil",facil)
+
+            val lanzar = Intent(this, MainActivity3::class.java)
+            lanzar.putExtra("DIFICULTAD",spinner.selectedItem.toString())
             startActivity(lanzar)
-
-
         }
 
-        val spinner = findViewById<Spinner>(R.id.spinner1)
-        val arrayAdapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,dificultad)
-        spinner.adapter = arrayAdapter
 
-        //sacar posicion
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                p0: AdapterView<*>?,
-                p1: View?,
-                position: Int,
-                p3: Long) {
 
-               facil = spinner.getItemAtPosition(0).toString()
-            }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
 
-        }
+
 
     }
 }

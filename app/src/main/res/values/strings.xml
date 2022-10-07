@@ -2,4 +2,10 @@
     <string name="app_name">QuizzAppBasic</string>
 
     <string name="Descripcion">Logo</string>
+
+    <string-array name="Dificultad">
+        <item>Facil</item>
+        <item>Normal</item>
+        <item>Dificil</item>
+    </string-array>
 </resources>

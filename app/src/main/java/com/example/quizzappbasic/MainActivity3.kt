@@ -27,8 +27,8 @@ class MainActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
 
-       val bundle = intent.extras
-        val dato = bundle?.getString("facil")
+        val bundle = intent.extras
+        val dato = bundle?.getString("DIFICULTAD")
 
         val gameModel: GameModel by viewModels()
 //region asignaciones
@@ -46,7 +46,9 @@ class MainActivity3 : AppCompatActivity() {
         txtIndex.text = gameModel.Totalindex
         txtsizeIndex.text = gameModel.sizeIndex
 
-        txtdif.text = dato
+//        txtdif.text = dato
+
+
 //endregion
 
         var respuestas = listOf<String>(gameModel.currentQuestionAnswer, gameModel.currentQuestionAnswerBad1, gameModel.currentQuestionAnswerBad2, gameModel.currentQuestionAnswerBad3 )
