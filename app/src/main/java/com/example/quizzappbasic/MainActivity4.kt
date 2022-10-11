@@ -14,7 +14,8 @@ class MainActivity4 : AppCompatActivity() {
     private lateinit var txtPuntajeFinal : TextView
     private lateinit var txtPuntosMenosHints : TextView
     private lateinit var ImgImagen : ImageView
-    private lateinit var BtnCambio : Button
+    private lateinit var txtRes : TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class MainActivity4 : AppCompatActivity() {
         val dato2 = bundle?.getInt(HINTS_USADAS)
 
         ImgImagen = findViewById(R.id.imgResultados)
-        BtnCambio = findViewById(R.id.btnCambio)
+        txtRes = findViewById(R.id.txtRes)
 
         txtPuntajeFinal = findViewById(R.id.txtPuntajeFinal)
         txtPuntajeFinal.text = "Puntaje final: ${dato}"
@@ -33,17 +34,32 @@ class MainActivity4 : AppCompatActivity() {
         txtPuntosMenosHints = findViewById(R.id.txtPuntosMenosHints)
         txtPuntosMenosHints.text = "Puntos malos por hints: ${dato2}"
 
-        BtnCambio.setOnClickListener {
-            ImgImagen.setImageResource(R.drawable.mantenimiento)
-        }
+
+        //region CAMBIO IMAGEVIEW
 
         if (dato != null) {
-            if(dato > 60 && dato <= 150){
-                ImgImagen.setImageResource(R.drawable.mantenimiento)
+            if(dato < 60){
+                ImgImagen.setImageResource(R.drawable.morty2)
+                txtRes.text = "TU PUEDES HACERLO MEJOR :("
 
             }
         }
 
+        if (dato != null) {
+            if(dato > 60 && dato <= 150){
+                ImgImagen.setImageResource(R.drawable.morty3)
+                txtRes.text = "ESTUDIA TANTITO MASS :)"
 
+            }
+        }
+
+        if (dato != null) {
+            if(dato > 150){
+                ImgImagen.setImageResource(R.drawable.morty1)
+                txtRes.text = "ERESSS UN PROO :3"
+            }
+        }
+
+//endregion
     }
 }

@@ -25,6 +25,7 @@ class MainActivity3 : AppCompatActivity() {
     private lateinit var txtTema: TextView
     private lateinit var txtContestada: TextView
     private lateinit var txtHints: TextView
+    private lateinit var txtUsasteHints: TextView
     private lateinit var btnHints: Button
     var indexHints = 0
     var respuestasEliminadas = 0
@@ -53,7 +54,7 @@ class MainActivity3 : AppCompatActivity() {
         txtTema = findViewById(R.id.txtTema)
         txtHints = findViewById(R.id.txtHints)
         btnHints = findViewById(R.id.btnHint)
-
+        txtUsasteHints = findViewById((R.id.txtUsasteHints))
         txtQuestion.text = gameModel.currentQuestionText
         txtIndex.text = gameModel.Totalindex
         txtsizeIndex.text = gameModel.sizeIndex
@@ -67,6 +68,8 @@ class MainActivity3 : AppCompatActivity() {
 
 
 //endregion
+
+        //lamar funcion para checar la dificultad
         OpcDific(gameModel, dato)
 
 //region HINTS
@@ -74,8 +77,15 @@ class MainActivity3 : AppCompatActivity() {
 
             gameModel.lessPointsHints()
             gameModel.MalosPuntos()
+            gameModel.MostarUsoHint()
+
+            if(gameModel.UsasteHints == true){
+                txtUsasteHints.text = "En esta pregunta usaste hints"
+            }
+
 
             if (indexHints == 2) {
+
                 if (btnResp1.text == gameModel.currentQuestionAnswer) {
                     btnResp1.performClick()
                     gameModel.disminHints()
@@ -146,7 +156,9 @@ class MainActivity3 : AppCompatActivity() {
             txtIndex.text = gameModel.Totalindex
             txtTema.text = gameModel.currentQuestionTema
 
-
+            if(gameModel.UsasteHints == true){
+                txtUsasteHints.text = "PEn esta pregunta usaste hints"
+            }else {txtUsasteHints.text =""}
 
             if(gameModel.obtenerContestadas == 10){
                 val lanzar = Intent(this, MainActivity4::class.java)
@@ -165,6 +177,10 @@ class MainActivity3 : AppCompatActivity() {
 
             txtIndex.text = gameModel.Totalindex
             txtTema.text = gameModel.currentQuestionTema
+
+            if(gameModel.UsasteHints == true){
+                txtUsasteHints.text = "En esta pregunta usaste hints"
+            } else {txtUsasteHints.text =""}
         }
 
 
