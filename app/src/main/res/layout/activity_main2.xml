@@ -18,31 +18,53 @@
             android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Trabajo en proceso . . ."
+            android:text="Opciones del juego"
             android:textSize="25dp"
             android:layout_marginStart="60dp"
             android:textColor="@color/white"
             />
 
-        <ImageView
-            android:id="@+id/imagen1"
-            android:layout_width="800px"
-            android:layout_height="800px"
-            android:layout_margin="50dp"
-            android:src="@drawable/estres"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-
-            />
-
         <TextView
+            android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Favor de volver al menu inicial"
+            android:text="Escoge tus temas:"
             android:textSize="25dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="60dp"
             android:textColor="@color/white"
+            />
+
+        <CheckBox android:id="@+id/checkbox1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="chocha"
+            />
+        <CheckBox android:id="@+id/checkbox2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="culo"
+            />
+
+        <CheckBox android:id="@+id/checkbox3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="teta"
+            />
+        <CheckBox android:id="@+id/checkbox4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TODO"
+            />
+
+        <Button
+            android:id="@+id/btnVer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginTop="30dp"
+            android:text="Checar"
+            android:backgroundTint="@color/rojito"
             />
 
         <Button
