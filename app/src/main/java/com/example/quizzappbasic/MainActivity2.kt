@@ -5,19 +5,56 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.room.Room
 import org.w3c.dom.Text
 
 class MainActivity2 : AppCompatActivity() {
-    lateinit var checkBox: CheckBox
 
-//    lateinit var spinner : Spinner
-
+    lateinit var btnGuardarConfig : Button
+    lateinit var chk1 : CheckBox
+    lateinit var chk2: CheckBox
+    lateinit var chk3: CheckBox
+    lateinit var chk4: CheckBox
+    lateinit var chk5: CheckBox
+    lateinit var chk6: CheckBox
+    lateinit var ExSeekBar:SeekBar
+    lateinit var txtSeek:TextView
+    lateinit var btnRegresar : Button
+    lateinit var spinner : Spinner
+    lateinit var switchPistas: Switch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        val spinner = findViewById<Spinner>(R.id.spinner1)
+        //region Variables Botones,Checkbox,Spinner
+        spinner = findViewById(R.id.spinner1)
+        btnGuardarConfig = findViewById(R.id.btnGuardarConfig)
+        chk1 = findViewById(R.id.checkbox1)
+        chk2 = findViewById(R.id.checkbox2)
+        chk3 = findViewById(R.id.checkbox3)
+        chk4 = findViewById(R.id.checkbox4)
+        chk5 = findViewById(R.id.checkbox5)
+        chk6 = findViewById(R.id.checkbox6)
+        ExSeekBar = findViewById(R.id.ExSeekBar)
+        txtSeek = findViewById(R.id.txtSeek)
+        btnRegresar = findViewById(R.id.btnRegresar)
+        switchPistas = findViewById(R.id.switchPistas)
+
+        //endregion
+
+        //region BASE DE DATOS
+        val db = Room.databaseBuilder(
+            applicationContext,
+            GameDataBase::class.java, "quizapp")
+            .allowMainThreadQueries()
+            .build()
+
+        val configDao =db.configDao()
+
+        //endregion
+
+        //region SPINNER
 
         ArrayAdapter.createFromResource(
             this,
@@ -30,25 +67,9 @@ class MainActivity2 : AppCompatActivity() {
             spinner.adapter = adapter
         }
 
-        val chk = findViewById<CheckBox>(R.id.checkbox1)
-        val chk2 = findViewById<CheckBox>(R.id.checkbox2)
-        val chk3 = findViewById<CheckBox>(R.id.checkbox3)
-        val chk4 = findViewById<CheckBox>(R.id.checkbox4)
-        val chk5 = findViewById<CheckBox>(R.id.checkbox5)
-//        val btnVer = findViewById<Button>(R.id.btnVer)
-        val ExSeekBar = findViewById<SeekBar>(R.id.ExSeekBar)
-        val txtSeek = findViewById<TextView>(R.id.txtSeek)
+        //endregion
 
-        val btnRegresar = findViewById<Button>(R.id.btnRegresar)
-        btnRegresar.setOnClickListener()
-        {
-
-            val lanzar = Intent(this, MainActivity::class.java)
-            lanzar.putExtra("DIFICULTAD",spinner.selectedItem.toString())
-            startActivity(lanzar)
-        }
-
-        //slider para escoger la cantidad de preguntas
+        //region SLIDER
 
         ExSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -65,11 +86,23 @@ class MainActivity2 : AppCompatActivity() {
 
         })
 
+        //endregion
+
+        //region Botones regresar y Guardar
+
+        btnRegresar.setOnClickListener()
+        {
+            val lanzar = Intent(this, MainActivity::class.java)
+            startActivity(lanzar)
+        }
+
+        btnGuardarConfig.setOnClickListener() {
+            configDao.AddConfig(chk1.isChecked,chk2.isChecked,chk3.isChecked,chk4.isChecked,chk5.isChecked,chk6.isChecked,switchPistas.isChecked,spinner.selectedItemPosition+1,ExSeekBar.progress)
+        }
+
+        //endregion
 
     }
-
-
-
 
 }
 

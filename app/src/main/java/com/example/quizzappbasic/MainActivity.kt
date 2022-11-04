@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bundle = intent.extras
-        val dato = bundle?.getString("DIFICULTAD")
+//        val bundle = intent.extras
+//        val dato = bundle?.getString("DIFICULTAD")
 
         val gameModel: GameModel by viewModels()
 
@@ -35,7 +35,15 @@ class MainActivity : AppCompatActivity() {
 
 
         val questionsDao = db.questionsDao()
-        questionsDao.AddQuestions(gameModel.Preguntas)
+//        questionsDao.AddQuestions(gameModel.Preguntas)
+
+        val configDao = db.configDao()
+
+        val GameInfoDao = db.GameInfoDao()
+
+        val lastConfig = configDao.GetLastConfig()
+
+
 
 
         btnOpciones = findViewById(R.id.btnOpciones)
@@ -47,8 +55,9 @@ class MainActivity : AppCompatActivity() {
         btnJugar = findViewById(R.id.btnJugar)
         btnJugar.setOnClickListener {
 
+            GameInfoDao.AddGameInfo(false,true,50)
+
             val lanzar = Intent(this, MainActivity3::class.java)
-            lanzar.putExtra("DIFICULTAD",dato.toString())
             startActivity(lanzar)
         }
 

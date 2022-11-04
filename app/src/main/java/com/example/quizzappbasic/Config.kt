@@ -4,7 +4,8 @@ import android.widget.CheckBox
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity (tableName = "configuracion")
+
 data class Config(@PrimaryKey (autoGenerate = true) val id:Int,
                   val checkBox:Boolean,
                   val checkBox2: Boolean,

@@ -7,5 +7,7 @@ import androidx.room.RoomDatabase
 abstract class GameDataBase: RoomDatabase() {
 
     abstract fun questionsDao(): QuestionsDao
+    abstract fun configDao(): ConfigDao
+    abstract fun GameInfoDao(): gameInfoDao
 
 }
