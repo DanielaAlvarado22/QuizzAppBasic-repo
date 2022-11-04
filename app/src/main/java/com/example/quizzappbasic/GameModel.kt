@@ -111,6 +111,10 @@ class GameModel : ViewModel() {
         PuntosMenosHints += 2
     }
 
+    //obtener lista de preguntas
+    val Preguntas : List<Question>
+        get() = questions
+
     // poner en aleatorio las preguntas
     val shuffQuestions = questions.shuffled()
 

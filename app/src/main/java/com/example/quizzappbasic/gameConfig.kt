@@ -5,11 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-@Entity
-data class gameConfig(@Embedded val GameInfo: Question,
+data class gameConfig(@Embedded val GameInfo: gameInfo,
                       @Relation(
-                          parentColumn = "questionId",
-                          entityColumn = "questionId",
+                          parentColumn = "id",
+                          entityColumn = "id"
                       )
-                      val answers: List<Answer>)
+                      val gameConfig: Config)
 
