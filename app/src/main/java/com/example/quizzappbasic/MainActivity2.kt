@@ -3,10 +3,9 @@ package com.example.quizzappbasic
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.room.Room
-import org.w3c.dom.Text
+import com.example.quizzappbasic.daos.GameDataBase
 
 class MainActivity2 : AppCompatActivity() {
 

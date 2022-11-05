@@ -1,4 +1,4 @@
-package com.example.quizzappbasic
+package com.example.quizzappbasic.tables
 
 import android.widget.CheckBox
 import androidx.room.Entity

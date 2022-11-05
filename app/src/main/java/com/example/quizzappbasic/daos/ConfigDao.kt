@@ -1,6 +1,7 @@
-package com.example.quizzappbasic
+package com.example.quizzappbasic.daos
 
 import androidx.room.*
+import com.example.quizzappbasic.tables.Config
 
 
 @Dao

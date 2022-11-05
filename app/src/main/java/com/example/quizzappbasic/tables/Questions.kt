@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity (tableName = "questions")
 
-data class Question(@PrimaryKey val id:Int,
+data class Question(@PrimaryKey val questionId:Int,
                     val text: String,
                     var answered:Boolean,
                     var answeredCorrectly: Int,

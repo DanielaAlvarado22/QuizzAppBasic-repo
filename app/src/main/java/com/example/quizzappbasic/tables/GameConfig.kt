@@ -1,4 +1,4 @@
-package com.example.quizzappbasic
+package com.example.quizzappbasic.tables
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
