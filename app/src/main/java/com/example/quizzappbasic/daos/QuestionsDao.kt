@@ -30,4 +30,7 @@ interface QuestionsDao {
     @Query("INSERT INTO questions_temas (gameId, questionId) values (:gameid,:questionid)")
     fun AddQuestionTema(gameid: Int, questionid: Int)
 
+    //Obitene las preguntas y sus datos del juego actual
+    @Query("SELECT * FROM questions WHERE questionId IN(SELECT questionId FROM questions_temas WHERE gameId=:gameId)")
+    fun getCurrentGameQuestions(gameId: Int): List<Question>
 }

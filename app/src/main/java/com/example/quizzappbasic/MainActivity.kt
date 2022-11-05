@@ -65,10 +65,10 @@ class MainActivity : AppCompatActivity() {
                     temas.add("Entretenimiento")
                 }
                 if(lastConfig.checkBox2){//animales
-                    temas.add("Animales")
+                    temas.add("Cultura general")
                 }
                 if(lastConfig.checkBox3){//cultura
-                    temas.add("Cultura general")
+                    temas.add("Animales")
                 }
                 if(lastConfig.checkBox4){//historia
                     temas.add("Historia de México")

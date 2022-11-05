@@ -9,6 +9,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import com.example.quizzappbasic.daos.GameDataBase
+
 val PUNTAJE = "PUNTAJE"
 val HINTS_USADAS = "HINTS_USADAS"
 class MainActivity3 : AppCompatActivity() {
@@ -25,6 +28,7 @@ class MainActivity3 : AppCompatActivity() {
     private lateinit var txtTema: TextView
     private lateinit var txtContestada: TextView
     private lateinit var txtHints: TextView
+    private lateinit var txtDiff: TextView
     private lateinit var txtUsasteHints: TextView
     private lateinit var btnHints: Button
     var indexHints = 0
@@ -36,8 +40,21 @@ class MainActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
 
-        val bundle = intent.extras
-        val dato = bundle?.getString("DIFICULTAD")
+        val db = Room.databaseBuilder(
+            applicationContext,
+            GameDataBase::class.java, "quizapp")
+            .allowMainThreadQueries()
+            .build()
+
+        val gameDao = db.GameInfoDao()
+        val configDao = db.configDao()
+        var currentGame = gameDao.getLastGame()
+        currentGame.isStarted = true
+        gameDao.UpdateGame(currentGame)
+
+        var currentConfig = configDao.GetLastConfig()
+        var dificultadIndex = currentConfig.spinn
+        var pistasEnabled = currentConfig.pistas
 
         val gameModel: GameModel by viewModels()
 //region asignaciones
@@ -55,6 +72,14 @@ class MainActivity3 : AppCompatActivity() {
         txtHints = findViewById(R.id.txtHints)
         btnHints = findViewById(R.id.btnHint)
         txtUsasteHints = findViewById((R.id.txtUsasteHints))
+        if(!pistasEnabled){
+            btnHints.isEnabled = false
+            txtHints.isEnabled = false
+            txtUsasteHints.isEnabled = false
+        }
+        //ASIGNANDO LAS PREGUNTAS SHUFLEADAS AL GAME MODEL PARA LA LOGICA
+        gameModel.shuffQuestions = db.questionsDao().getCurrentGameQuestions(currentGame.gameId)
+
         txtQuestion.text = gameModel.currentQuestionText
         txtIndex.text = gameModel.Totalindex
         txtsizeIndex.text = gameModel.sizeIndex
@@ -63,14 +88,18 @@ class MainActivity3 : AppCompatActivity() {
 
         var listaBtn = mutableListOf<Button>(btnResp1, btnResp2, btnResp3, btnResp4)
 
+        var difText = ""
+        if(dificultadIndex==1){difText = "Facil"}
+        if(dificultadIndex==2){difText = "Normal"}
+        if(dificultadIndex==3){difText = "Dificil"}
 
-//        txtdif.text = dato
+        //txtdif.text = dato
 
 
 //endregion
 
         //lamar funcion para checar la dificultad
-        OpcDific(gameModel, dato)
+        OpcDific(gameModel, difText)
 
 //region HINTS
         btnHints.setOnClickListener {
@@ -148,24 +177,29 @@ class MainActivity3 : AppCompatActivity() {
 
 //region btn next y prev
         btnNext.setOnClickListener { v ->
+            if(gameModel.obtenerContestadas == 5){
+                currentGame.puntosFinales = gameModel.points
+                currentGame.isFinished = true
+                gameDao.UpdateGame(currentGame)
+                val lanzar = Intent(this, MainActivity4::class.java)
+                lanzar.putExtra(PUNTAJE,currentGame.puntosFinales)
+                lanzar.putExtra(HINTS_USADAS,gameModel.MenosPorHints)
+                startActivity(lanzar)
+            }
             gameModel.nextQuestion()
             txtQuestion.text = gameModel.currentQuestionText
             respuestasEliminadas = 0
             randomizeAnswers(gameModel, listaBtn)
-            OpcDific(gameModel, dato)
+            OpcDific(gameModel, difText)
             txtIndex.text = gameModel.Totalindex
             txtTema.text = gameModel.currentQuestionTema
 
             if(gameModel.UsasteHints == true){
-                txtUsasteHints.text = "PEn esta pregunta usaste hints"
+                txtUsasteHints.text = "En esta pregunta usaste hints"
             }else {txtUsasteHints.text =""}
 
-            if(gameModel.obtenerContestadas == 10){
-                val lanzar = Intent(this, MainActivity4::class.java)
-                lanzar.putExtra(PUNTAJE,gameModel.points)
-                lanzar.putExtra(HINTS_USADAS,gameModel.MenosPorHints)
-                startActivity(lanzar)
-            }
+            //si contestadas del game model es igual la cant de preg de la config actual
+            //if(gameModel.obtenerContestadas == currentConfig.cantPreguntas){
         }
 
         btnPrev.setOnClickListener { v ->
@@ -173,7 +207,7 @@ class MainActivity3 : AppCompatActivity() {
             txtQuestion.text = gameModel.currentQuestionText
 
             randomizeAnswers(gameModel, listaBtn)
-            OpcDific(gameModel, dato)
+            OpcDific(gameModel, difText)
 
             txtIndex.text = gameModel.Totalindex
             txtTema.text = gameModel.currentQuestionTema

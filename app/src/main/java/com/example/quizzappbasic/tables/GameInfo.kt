@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity (tableName = "gameInfo")
 
 data class gameInfo(@PrimaryKey (autoGenerate = true) val gameId:Int,
-                    val isFinished:Boolean,
-                    val isStarted:Boolean,
-                    val puntosFinales:Int,
+                    var isFinished:Boolean,
+                    var isStarted:Boolean,
+                    var puntosFinales:Int,
                     val player:String
                     )

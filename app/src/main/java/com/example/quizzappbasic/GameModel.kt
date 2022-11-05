@@ -116,7 +116,7 @@ class GameModel : ViewModel() {
         get() = questions
 
     // poner en aleatorio las preguntas
-    val shuffQuestions = questions.shuffled()
+    var shuffQuestions = questions.shuffled()
 
     //obtener current index
     val Totalindex : String
@@ -124,7 +124,7 @@ class GameModel : ViewModel() {
 
     //obtener el size de la lista
     val sizeIndex : String
-        get() = "/"+ (shuffQuestions.size - 15).toString()
+        get() = "/"+ (shuffQuestions.size).toString()
 
     val currentIndex: Int
         get() = currentQuestionIndex
