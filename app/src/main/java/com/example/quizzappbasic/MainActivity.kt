@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.viewModels
+import androidx.core.view.isGone
 import androidx.room.Room
 import com.example.quizzappbasic.daos.GameDataBase
 import com.example.quizzappbasic.daos.QuestionsDao
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnOpciones :Button
     lateinit var btnJugar : Button
     lateinit var btnPuntuaciones : Button
+    lateinit var btn_continuar : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +89,16 @@ class MainActivity : AppCompatActivity() {
             val lanzar = Intent(this, MainActivity3::class.java)
             startActivity(lanzar)
         }
-
+//        var lastGame = GameInfoDao.getLastGame()
+//        btn_continuar = findViewById<Button>(R.id.btn_Continuar)
+//        btn_continuar.setOnClickListener {
+//            val act3 = Intent(this,MainActivity3::class.java)
+//            startActivity(act3)
+//        }
+//        if(lastGame.isStarted){
+//            btn_continuar.isGone = false
+//        }else{
+//            btn_continuar.isGone = true
+//        }
     }
 }

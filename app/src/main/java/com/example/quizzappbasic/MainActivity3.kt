@@ -49,7 +49,10 @@ class MainActivity3 : AppCompatActivity() {
         val gameDao = db.GameInfoDao()
         val configDao = db.configDao()
         var currentGame = gameDao.getLastGame()
-        currentGame.isStarted = true
+        if (!currentGame.isStarted){
+            currentGame.isStarted = true
+        }
+
         gameDao.UpdateGame(currentGame)
 
         var currentConfig = configDao.GetLastConfig()
