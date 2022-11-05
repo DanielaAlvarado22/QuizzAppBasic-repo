@@ -55,7 +55,10 @@ class MainActivity : AppCompatActivity() {
         btnJugar = findViewById(R.id.btnJugar)
         btnJugar.setOnClickListener {
 
-            GameInfoDao.AddGameInfo(false,true,50)
+            GameInfoDao.AddGameInfo(false,true,0,"DVS")
+            var gameId = GameInfoDao.getLastGameId()
+
+
 
             val lanzar = Intent(this, MainActivity3::class.java)
             startActivity(lanzar)

@@ -8,4 +8,6 @@ import androidx.room.PrimaryKey
 data class gameInfo(@PrimaryKey (autoGenerate = true) val id:Int,
                     val isFinished:Boolean,
                     val isStarted:Boolean,
-                    val puntosFinales:Int)
+                    val puntosFinales:Int,
+                    val player:String
+                    )
