@@ -39,6 +39,26 @@
             android:text="Jugar" />
 
         <Button
+            android:id="@+id/btnContinuar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/azulin_300"
+            android:text="Continuar juego" />
+
+        <Button
+            android:id="@+id/btnPuntos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/purple_700"
+            android:text="Ver puntuacion" />
+
+        <Button
             android:id="@+id/btnOpciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -15,7 +15,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnOpciones :Button
     lateinit var btnJugar : Button
     lateinit var btnPuntuaciones : Button
-    lateinit var btn_continuar : Button
+    lateinit var btn_Continuar : Button
+    lateinit var btnPuntos : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val questionsDao = db.questionsDao()
-        //questionsDao.AddQuestions(gameModel.Preguntas)
+//        questionsDao.AddQuestions(gameModel.Preguntas)
 
         val configDao = db.configDao()
         val GameInfoDao = db.GameInfoDao()
@@ -89,16 +90,28 @@ class MainActivity : AppCompatActivity() {
             val lanzar = Intent(this, MainActivity3::class.java)
             startActivity(lanzar)
         }
+
+        btn_Continuar = findViewById(R.id.btnContinuar)
+
 //        var lastGame = GameInfoDao.getLastGame()
-//        btn_continuar = findViewById<Button>(R.id.btn_Continuar)
-//        btn_continuar.setOnClickListener {
-//            val act3 = Intent(this,MainActivity3::class.java)
-//            startActivity(act3)
-//        }
 //        if(lastGame.isStarted){
-//            btn_continuar.isGone = false
+//            btn_Continuar.isGone = false
 //        }else{
-//            btn_continuar.isGone = true
+//            true
 //        }
+
+
+        btn_Continuar.setOnClickListener {
+            val act3 = Intent(this,MainActivity3::class.java)
+            startActivity(act3)
+        }
+
+        btnPuntos = findViewById(R.id.btnPuntos)
+
+        btnPuntos.setOnClickListener {
+            val act5 = Intent(this,MainActivity5::class.java)
+            startActivity(act5)
+        }
+
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/azulin_200"
+    android:fillViewport="true"
+    tools:context=".MainActivity5">
+
+    <TextView
+        android:id="@+id/txtPuntos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="Iniciales - Puntos - Pistas"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btnReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginTop="450dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/verde"
+        android:text="Regresar" />
+
+
+</LinearLayout>
